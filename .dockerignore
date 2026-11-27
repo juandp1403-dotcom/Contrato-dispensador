@@ -1,0 +1,10 @@
+**/node_modules
+**/dist
+**/artifacts
+**/cache
+**/coverage
+**/data
+**/*.log
+.git
+.env
+**/.env

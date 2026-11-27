@@ -1,2 +1,13 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+# Todos los archivos de texto se guardan y se descargan con fin de línea LF,
+# en cualquier sistema operativo (evita la conversión a CRLF de Windows).
+# Importante para Docker/Coolify, que ejecutan los archivos en Linux.
+* text=auto eol=lf
+
+# Archivos binarios: sin conversión
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.ico  binary
+*.woff binary
+*.woff2 binary

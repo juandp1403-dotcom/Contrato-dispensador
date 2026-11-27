@@ -1,0 +1,19 @@
+{
+  "name": "dispensador-blockchain",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Nodo Hardhat local y contrato DispensadorDigital.sol para la máquina dispensadora.",
+  "license": "MIT",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "compilar": "hardhat compile",
+    "test": "hardhat test",
+    "exportar": "node scripts/exportar-abi.js ../frontend/src/contratos.json",
+    "nodo": "hardhat node --hostname 0.0.0.0 --port 8545"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "5.0.0",
+    "hardhat": "2.29.1",
+    "solc": "0.8.34"
+  }
+}

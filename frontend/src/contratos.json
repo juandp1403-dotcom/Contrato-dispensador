@@ -1,0 +1,170 @@
+{
+ "DispensadorDigital": {
+  "abi": [
+   {
+    "inputs": [
+     {
+      "internalType": "uint256",
+      "name": "precioInicial",
+      "type": "uint256"
+     }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+   },
+   {
+    "inputs": [],
+    "name": "FalloAlRetirar",
+    "type": "error"
+   },
+   {
+    "inputs": [
+     {
+      "internalType": "uint256",
+      "name": "enviado",
+      "type": "uint256"
+     },
+     {
+      "internalType": "uint256",
+      "name": "requerido",
+      "type": "uint256"
+     }
+    ],
+    "name": "PagoInsuficiente",
+    "type": "error"
+   },
+   {
+    "inputs": [],
+    "name": "PrecioInvalido",
+    "type": "error"
+   },
+   {
+    "inputs": [],
+    "name": "SinSaldoParaRetirar",
+    "type": "error"
+   },
+   {
+    "inputs": [
+     {
+      "internalType": "address",
+      "name": "llamador",
+      "type": "address"
+     }
+    ],
+    "name": "SoloDuenoPuedeRetirar",
+    "type": "error"
+   },
+   {
+    "anonymous": false,
+    "inputs": [
+     {
+      "indexed": true,
+      "internalType": "address",
+      "name": "comprador",
+      "type": "address"
+     },
+     {
+      "indexed": false,
+      "internalType": "uint256",
+      "name": "montoPagado",
+      "type": "uint256"
+     },
+     {
+      "indexed": false,
+      "internalType": "uint256",
+      "name": "idVenta",
+      "type": "uint256"
+     }
+    ],
+    "name": "CompraExitosa",
+    "type": "event"
+   },
+   {
+    "anonymous": false,
+    "inputs": [
+     {
+      "indexed": true,
+      "internalType": "address",
+      "name": "dueno",
+      "type": "address"
+     },
+     {
+      "indexed": false,
+      "internalType": "uint256",
+      "name": "montoRetirado",
+      "type": "uint256"
+     }
+    ],
+    "name": "FondosRetirados",
+    "type": "event"
+   },
+   {
+    "inputs": [],
+    "name": "comprar",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+   },
+   {
+    "inputs": [],
+    "name": "dueno",
+    "outputs": [
+     {
+      "internalType": "address",
+      "name": "",
+      "type": "address"
+     }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+   },
+   {
+    "inputs": [],
+    "name": "obtenerBalance",
+    "outputs": [
+     {
+      "internalType": "uint256",
+      "name": "",
+      "type": "uint256"
+     }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+   },
+   {
+    "inputs": [],
+    "name": "precioArticulo",
+    "outputs": [
+     {
+      "internalType": "uint256",
+      "name": "",
+      "type": "uint256"
+     }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+   },
+   {
+    "inputs": [],
+    "name": "retirarGanancias",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+   },
+   {
+    "inputs": [],
+    "name": "totalVentas",
+    "outputs": [
+     {
+      "internalType": "uint256",
+      "name": "",
+      "type": "uint256"
+     }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+   }
+  ],
+  "bytecode": "0x60c060405234801561000f575f5ffd5b5060405161046938038061046983398101604081905261002e9161005a565b805f0361004e57604051633e81619360e21b815260040160405180910390fd5b6080523360a052610071565b5f6020828403121561006a575f5ffd5b5051919050565b60805160a0516103b56100b45f395f818160a2015281816102010152818161026601526102f501525f818161010b0152818161012f015261016a01526103b55ff3fe608060405260043610610054575f3560e01c80631d24fa051461005857806322d9a1ee1461007f57806352a07d181461009157806379879d30146100dc578063b212c51c146100e6578063cc2511c2146100fa575b5f5ffd5b348015610063575f5ffd5b5061006c5f5481565b6040519081526020015b60405180910390f35b34801561008a575f5ffd5b504761006c565b34801561009c575f5ffd5b506100c47f000000000000000000000000000000000000000000000000000000000000000081565b6040516001600160a01b039091168152602001610076565b6100e461012d565b005b3480156100f1575f5ffd5b506100e46101f6565b348015610105575f5ffd5b5061006c7f000000000000000000000000000000000000000000000000000000000000000081565b7f000000000000000000000000000000000000000000000000000000000000000034101561019b5760405163baafcfc760e01b81523460048201527f000000000000000000000000000000000000000000000000000000000000000060248201526044015b60405180910390fd5b60015f5f8282546101ac919061035a565b90915550505f5460405133917f74edcbeec16a9025b4f669f794b1208c69a103c7de72dd26032d31168d3096fb916101ec91348252602082015260400190565b60405180910390a2565b336001600160a01b037f0000000000000000000000000000000000000000000000000000000000000000161461024157604051630c3dc55b60e41b8152336004820152602401610192565b475f81900361026357604051630dbf5a9360e01b815260040160405180910390fd5b5f7f00000000000000000000000000000000000000000000000000000000000000006001600160a01b0316826040515f6040518083038185875af1925050503d805f81146102cc576040519150601f19603f3d011682016040523d82523d5f602084013e6102d1565b606091505b50509050806102f3576040516311e5330d60e01b815260040160405180910390fd5b7f00000000000000000000000000000000000000000000000000000000000000006001600160a01b03167f02d307af47058fdf27fae5b991017484be22b39ad49e647c2f799f2e7ef53d6a8360405161034e91815260200190565b60405180910390a25050565b8082018082111561037957634e487b7160e01b5f52601160045260245ffd5b9291505056fea2646970667358221220a0ec46d08c448fd0eec9c1313ee9dbc00e3fa3dbd7fe7683161d3511b7adaade64736f6c63430008220033"
+ }
+}

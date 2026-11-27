@@ -1,0 +1,53 @@
+# Máquina dispensadora: nodo Hardhat + frontend React.
+# En Coolify: Build Pack = "Docker Compose", archivo = docker-compose.yml.
+# Solo el servicio "frontend" se publica; el nodo queda en la red interna.
+services:
+  blockchain:
+    build:
+      context: ./blockchain
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    expose:
+      - "8545"
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - "fetch('http://127.0.0.1:8545',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({jsonrpc:'2.0',id:1,method:'eth_chainId',params:[]})}).then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    restart: unless-stopped
+    environment:
+      # Coolify genera el dominio y enruta el tráfico HTTPS al puerto 3000.
+      - SERVICE_FQDN_FRONTEND_3000
+      - PORT=3000
+      - RPC_UPSTREAM=http://blockchain:8545
+      - DATA_DIR=/data
+    expose:
+      - "3000"
+    volumes:
+      - frontend-datos:/data
+    depends_on:
+      blockchain:
+        condition: service_healthy
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - "fetch('http://127.0.0.1:3000/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+volumes:
+  frontend-datos:

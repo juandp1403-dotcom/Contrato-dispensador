@@ -1,0 +1,7 @@
+# Solo para probar en tu PC con Docker (NO usar en Coolify):
+#   docker compose -f docker-compose.yml -f docker-compose.local.yml up --build
+# Luego abre http://localhost:3000
+services:
+  frontend:
+    ports:
+      - "3000:3000"
